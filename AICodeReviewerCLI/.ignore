@@ -8,3 +8,6 @@ secrets/*.json
 
 # Ignore test files
 **/*.Tests.cs
+
+# Ignore pipeline files
+bitbucket-pipelines.yml
