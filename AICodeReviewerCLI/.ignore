@@ -1,0 +1,10 @@
+# Ignore secrets and sensitive config
+appsettings*.json
+secrets/*.json
+.env
+
+# Ignore everything in the uSync folder
+**/uSync/**
+
+# Ignore test files
+**/*.Tests.cs
