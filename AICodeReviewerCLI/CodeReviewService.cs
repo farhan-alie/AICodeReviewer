@@ -24,6 +24,7 @@ public class CodeReviewService(AppSettings appSettings)
                               - Bug risks and logical flaws
                               - Naming conventions, formatting, and style issues
                               - If there are any issues, write them as a **numbered list**, one per line.
+                              - Its okay not to have xml comments in the code, but if they are present, check if they are meaningful and correct.
 
                            2. **Suggestions**  
                               - Provide a **numbered list** of concrete improvements matching the issue numbers. Each should give a meaningful and specific fix or enhancement.
