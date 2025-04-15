@@ -34,9 +34,9 @@ public class CodeReviewService(AppSettings appSettings)
                               - If the class appears to be violating the Single Responsibility Principle or doing too many things, suggest how it can be split into multiple classes for better modularity and maintainability.
 
                            4. **Important**:  
-                              - If no issues or suggestions exist for a file, do **not** include that file in the response. Completely skip it.
+                              - If no issues or suggestions exist for a file do **not** include that file in response and completrly skip it. If whole pull requests are empty then return pull request is good and no file is needed.
                               
-                           Use this output format for each file:
+                           Use this output format for each file only if applies:
 
                            ### File: [path/to/filename]
 
@@ -76,10 +76,12 @@ public class CodeReviewService(AppSettings appSettings)
 
         var result = await _client.GetChatClient("gpt-4o").CompleteChatAsync(behaviorPrompt, codePrompt);
         var aiReview = result.Value.Content[0].Text;
-        if (string.IsNullOrWhiteSpace(aiReview))
+        if (string.IsNullOrWhiteSpace(aiReview) || !aiReview.Contains("**Summary of Issues**"))
         {
+            // No issues found, return an empty list
             return [];
         }
+          
         // Parse AI response into per-file reviews
         var fileReviewRegex = new Regex(@"## File: (?<path>[^\n]+)\n(?<content>.*?)(?=(?:## File:|\z))",
             RegexOptions.Singleline);
