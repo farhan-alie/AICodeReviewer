@@ -85,9 +85,9 @@ public class BitbucketService
             : $"Failed to approve pull request: {response.Error}");
     }
     
-    public async Task DeclinePullRequest()
+    public async Task RequestChangesToPullRequestAsync()
     {
-        IApiResponse response = await _bitbucketClient.DeclinePullRequestAsync(_appSettings.PullRequestId);
+        IApiResponse response = await _bitbucketClient.RequestChangesToPullRequestAsync(_appSettings.PullRequestId);
         Console.WriteLine(response.IsSuccessStatusCode
             ? "Pull request declined"
             : $"Failed to decline pull request: {response.Error}");

@@ -17,8 +17,8 @@ public interface IBitbucketClient
     Task<IApiResponse> ApprovePullRequestAsync(
         [AliasAs("pullRequestId")] int pullRequestId);
     
-    [Post("/pullrequests/{pullRequestId}/decline")]
-    Task<IApiResponse> DeclinePullRequestAsync(
+    [Post("/pullrequests/{pullRequestId}/request-changes")]
+    Task<IApiResponse> RequestChangesToPullRequestAsync(
         [AliasAs("pullRequestId")] int pullRequestId);
     
     

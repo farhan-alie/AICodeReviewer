@@ -38,7 +38,7 @@ try
     else
     {
         await bitbucketSvc.PostInlineComment(fileReviews);
-        await bitbucketSvc.DeclinePullRequest();
+        await bitbucketSvc.RequestChangesToPullRequestAsync();
     }
 }
 catch (Exception ex)
