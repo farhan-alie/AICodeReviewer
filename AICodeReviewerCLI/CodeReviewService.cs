@@ -36,11 +36,6 @@ public class CodeReviewService(AppSettings appSettings)
                            4. **Important**:  
                               - If no issues or suggestions exist for a file, do **not** include that file in the response. Completely skip it.
                               
-                           5. Generate unit tests based on the improved code. 
-                              - Write unit tests for the improved code, ensuring that all new functionality is covered.
-                              - Use a testing framework like xUnit, and ensure the tests are clear and easy to understand.
-                              - If the code is not testable, explain why and suggest how it can be refactored to make it testable.
-
                            Use this output format for each file:
 
                            ### File: [path/to/filename]
