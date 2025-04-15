@@ -2,7 +2,7 @@ namespace AICodeReviewerCLI;
 
 public record CommentContent(string raw);
 
-public record Inline(string path, int to);
+public record Inline(string path);
 
 public record CommentRequest(CommentContent content, Inline inline);
 

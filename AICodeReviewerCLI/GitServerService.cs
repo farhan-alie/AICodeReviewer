@@ -67,7 +67,7 @@ public class BitbucketService
             var path = fileReview.Path;
             var review = string.Join("\n", fileReview.Content);
 
-            var commentRequest = new CommentRequest(new CommentContent(review), new Inline(path, 1));
+            var commentRequest = new CommentRequest(new CommentContent(review), new Inline(path));
             IApiResponse response =
                 await _bitbucketClient.PostInlineCommentAsync(_appSettings.PullRequestId, commentRequest);
             
