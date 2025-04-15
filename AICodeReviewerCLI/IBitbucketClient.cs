@@ -12,4 +12,17 @@ public interface IBitbucketClient
     Task<IApiResponse> PostInlineCommentAsync(
         [AliasAs("pullRequestId")] int pullRequestId,
         [Body] CommentRequest body);
+    
+    [Post("/pullrequests/{pullRequestId}/approve")]
+    Task<IApiResponse> ApprovePullRequestAsync(
+        [AliasAs("pullRequestId")] int pullRequestId);
+    
+    [Post("/pullrequests/{pullRequestId}/decline")]
+    Task<IApiResponse> DeclinePullRequestAsync(
+        [AliasAs("pullRequestId")] int pullRequestId);
+    
+    
+    [Post("/pullrequests/{pullRequestId}/merge")]
+    Task<IApiResponse> MergePullRequestAsync(
+        [AliasAs("pullRequestId")] int pullRequestId, MeregePullRequestRequest body);
 }

@@ -17,3 +17,11 @@ public record Link(
 );
 
 #endregion
+
+
+public record MeregePullRequestRequest(
+    string message
+)
+{
+    public string type { get; init; } = "pullrequest";
+}

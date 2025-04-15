@@ -76,4 +76,28 @@ public class BitbucketService
                 : $"Failed to post comment for {path}: {response.Error}");
         }
     }
+    
+    public async Task ApprovePullRequest()
+    {
+        IApiResponse response = await _bitbucketClient.ApprovePullRequestAsync(_appSettings.PullRequestId);
+        Console.WriteLine(response.IsSuccessStatusCode
+            ? "Pull request approved"
+            : $"Failed to approve pull request: {response.Error}");
+    }
+    
+    public async Task DeclinePullRequest()
+    {
+        IApiResponse response = await _bitbucketClient.DeclinePullRequestAsync(_appSettings.PullRequestId);
+        Console.WriteLine(response.IsSuccessStatusCode
+            ? "Pull request declined"
+            : $"Failed to decline pull request: {response.Error}");
+    }
+    
+    public async Task MergePullRequest(MeregePullRequestRequest request)
+    {
+        IApiResponse response = await _bitbucketClient.MergePullRequestAsync(_appSettings.PullRequestId, request);
+        Console.WriteLine(response.IsSuccessStatusCode
+            ? "Pull request merged"
+            : $"Failed to merge pull request: {response.Error}");
+    }
 }

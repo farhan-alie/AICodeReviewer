@@ -76,14 +76,16 @@ public class CodeReviewService(AppSettings appSettings)
 
         var result = await _client.GetChatClient("gpt-4o").CompleteChatAsync(behaviorPrompt, codePrompt);
         var aiReview = result.Value.Content[0].Text;
-
+        if (string.IsNullOrWhiteSpace(aiReview))
+        {
+            return [];
+        }
         // Parse AI response into per-file reviews
         var fileReviewRegex = new Regex(@"## File: (?<path>[^\n]+)\n(?<content>.*?)(?=(?:## File:|\z))",
             RegexOptions.Singleline);
         var fileReviews = fileReviewRegex.Matches(aiReview)
             .Select(m => new SrcFile(m.Groups["path"].Value.Trim(), m.Groups["content"].Value.Trim()))
             .ToList();
-
         return fileReviews;
     }
 }

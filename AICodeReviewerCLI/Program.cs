@@ -28,8 +28,18 @@ try
 {
     var files = await bitbucketSvc.GetModifiedSrcFilesAsync();
     var fileReviews = await codeReviewSvc.ReviewFilesAsync(files);
-    await bitbucketSvc.PostInlineComment(fileReviews);
-    DateTime now = DateTime.UtcNow;
+    if (fileReviews.Count == 0)
+    {
+        Console.WriteLine("No files to review.");
+       await bitbucketSvc.ApprovePullRequest();
+       await bitbucketSvc.MergePullRequest(new MeregePullRequestRequest("Merged by AI Reviewer"));
+       return;
+    }
+    else
+    {
+        await bitbucketSvc.PostInlineComment(fileReviews);
+        await bitbucketSvc.DeclinePullRequest();
+    }
 }
 catch (Exception ex)
 {
